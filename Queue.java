@@ -1,8 +1,12 @@
-public class Stack {
+public class Queue {
     Node head;
+    Node tail;
+    int size;
 
-    public Stack() {
+    public Queue() {
         head = null;
+        tail = null;
+        size = 0;
     }
 
     public boolean isEmpty() {
@@ -12,19 +16,23 @@ public class Stack {
         return false;
     }
 
-    public void push(int data) {
+    public void enqueue(int data) {
         Node tempNode = null;
 
         if (isEmpty()) {
             tempNode = new Node(data, null);
+            head = tempNode;
+            tail = tempNode;
         } else {
             tempNode = new Node(data, head);
+            tail.next = tempNode;
+            tail = tempNode;
         }
-
-        head = tempNode;
+        size += 1;
     }
 
-    public int pop() {
+    public int dequeue() {
+        size -= 1;
         if (isEmpty()) {
             return 0 / 0;
         } else {
@@ -43,26 +51,20 @@ public class Stack {
     }
 
     public int getLength() {    // should do this by updating a size variable when pushing or popping
-        int counter = 0;
-        Node curr = head;
-        while (curr != null) {
-            counter += 1;
-            curr = curr.next;
-        }
-        return counter;
+        return size;
     }
 
     public static void main(String[] args) {
-        Stack s = new Stack();
+        Queue q = new Queue();
 
-        s.push(5);
-        s.push(3);
-        s.push(4);
+        q.enqueue(5);
+        q.enqueue(6);
+        q.enqueue(7);
         
-        System.out.println("Stack Length: " + s.getLength());
-        System.out.println("Pop 1: " + s.pop());
-        System.out.println("Peek 2: " + s.peek());
-        System.out.println("Pop 2: " + s.pop());
-        System.out.println("New length: " + s.getLength());
+        System.out.println("Queue Length: " + q.getLength());
+        System.out.println("Dequeue 1: " + q.dequeue());
+        System.out.println("Peek 2: " + q.peek());
+        System.out.println("Dequeue 2: " + q.dequeue());
+        System.out.println("New length: " + q.getLength());
     }
 }
