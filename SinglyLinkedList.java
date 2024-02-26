@@ -1,8 +1,8 @@
 public class SinglyLinkedList {
     Node head;
 
-    public SinglyLinkedList(Node head) {
-        this.head = head;
+    public SinglyLinkedList() {
+        this.head = null;
     }
 
     public void printList() {
